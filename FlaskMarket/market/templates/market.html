@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}
+    Teknoloji Market
+{% endblock %}
+
+{% block content %}
+
+    <div class="row" style="margin-top:20px; margin-left:20px">
+        <div class="col-8" style="color:#000000">
+            <h2>Markette Bulunan Ürünler</h2>
+            <p>Satın almak için ürün seçin.</p>
+            <br>
+            <table class="table table-hover" style="color:#000000">
+                <thead>
+                    <tr>
+                        <!-- Your Columns HERE -->
+                        <th scope="col">ID</th>
+                        <th scope="col">Ad</th>
+                        <th scope="col">Barcode</th>
+                        <th scope="col">Fiyat</th>
+                        <th scope="col">Seçenek</th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Your rows inside the table HERE: -->
+                    {% for item in items %}
+                    {% include 'includes/items_modals.html' %}
+                        <tr>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.barcode }}</td>
+                            <td>{{ item.price}} TL</td>
+                            <td>
+                                <button class="btn btn-outline btn-info" data-toggle="modal" data-target="#Modal-MoreInfo-{{ item.id }}">Açıklama</button>
+                                <button class="btn btn-outline btn-success" data-togle="modal" data-target="#Modal-PurchaseConfirm-{{ item.id }}">Satın Al</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4" style="color:#000000">
+            <h2>Satın Alınan Ürünler</h2>
+            <p>Satın alınan ürünü İptal tuşuna tıklayarak iptal edebilirsin.</p>
+            <br>
+            <div class="row">
+                {% for owned_item in owned_items %}
+                {% include 'includes/owned_item_modals.html' %}
+                    <div class="col-md-6">
+                        <div style="margin-bottom: 5px" class="card text-center bg-dark">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ owned_item.name }}</h5>
+                                <button type="button" class="btn btn-outline-danger" style="margin-bottom: 5px"
+                                        data-toggle="modal" data-target="#Modal-SellingConfirm-{{ owned_items.id }}">
+                                    Ürün İptal Et
+                                </button>
+                                <p class="card-text"><strong>
+                                    Ürünün fiyatı {{ owned_item.price }}TL
+                                </strong></p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
