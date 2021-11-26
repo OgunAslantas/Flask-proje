@@ -1,0 +1,40 @@
+<style>
+    .modal-content {
+        background-color: #cdefff;
+    }
+</style>
+
+
+<div class="modal fade" id="Modal-SellingConfirm-{{ owned_items.id }}" 
+        tabindex="-1" role="dialog" 
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">
+                    {{owned_items.name}}
+                </h5>
+                <button type="button" class="close" 
+                    data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    {{ selling_form.hidden_tag() }}
+                    <h4 class="text-center">
+                        İptal etmek istediğine emin misin? {{ owned_items.name }} for {{ owned_items.price }}TL ?
+                    </h4>
+                    <br>
+
+                    <input id="sold_item" name="sold_item" type="hidden" value={{owned_items.name}}>
+                    {{ selling_form.submit(class="btn btn-outline-danger btn-block") }}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" 
+                    data-dismiss="modal">İptal</button>
+             </div>
+        </div>
+    </div>
+</div>
