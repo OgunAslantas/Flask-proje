@@ -1,2 +1,0 @@
-# FlaskProje
-https://github.com/jimdevops19/FlaskSeries: https://www.youtube.com/watch?v=Qr4QMBUPxWo&ab_channel=freeCodeCamp.org ders serisi takip edilerek hazırlanmıştır.
